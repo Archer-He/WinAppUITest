@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<Payload adobeCode="{3289C0E8-78B9-47D4-98E5-F25BFF1CBED4}">
+		<Data key="defaultAdobeCode">Photoshop-Installer-AdobeCode</Data>
+		<Data key="LicensingCode">Photoshop-CS6-Win-GM</Data>
+		<Data key="BridgeTalkCode">/adobe/bridgetalk/photoshop-60.064</Data>
+		<Data key="AMTConfigPath">C:\Program Files\Adobe\Adobe Photoshop CS6 (64 Bit)\AMT\application.xml</Data><Data key="DefaultDriverPayload">{74EB3499-8B95-4B5C-96EB-7B342F3FD0C6}</Data><Data key="InstallDate">1533277812</Data><Data key="driverAMTConfigPath">C:\Program Files (x86)\Common Files\Adobe\Adobe Photoshop CS6\AMT_Driver\application.xml</Data><Data key="driverLEID">Photoshop-CS6-Win-GM</Data><Data key="installedLanguages">zh_TW,zh_CN</Data></Payload>
+	<Other adobeCode="Photoshop-CS6-Win-GM">
+		<Data key="EPIC_APP">Adobe Photoshop CS6</Data>
+		<Data key="EPIC_APP_45">Adobe Photoshop CS6</Data>
+		<Data key="EPIC_APP_330">Adobe Photoshop CS6 Extended</Data>
+		<Data key="TrialSerialNumber">926287011921234454671866</Data>
+		<Data key="ExpirationDate"></Data>
+		<Data key="NTL_WO_SN"></Data>
+		<Data key="PayloadCode">{3289C0E8-78B9-47D4-98E5-F25BFF1CBED4}</Data></Other>
+	<Other adobeCode="/adobe/bridgetalk/photoshop-60.064">
+		<Data key="Specifier">photoshop-60.064</Data>
+		<Data key="ExecutableBasename">Photoshop</Data>
+		<Data key="BundleIdentifier">com.adobe.Photoshop</Data>
+		<Data key="DisplayName">Adobe Photoshop CS6 (64 bit)</Data>
+		<Data key="BridgeTalkVersion">2</Data>
+		<Data key="SupportsESTK">true</Data>
+	</Other>
+</Configuration>
