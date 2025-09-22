@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- calendar -->
+<Icon version="1" frameRate="0" width="156" height="156" screenWidth="1080" useVariableUpdater="DateTime.Hour">
+	<Var name="icon_width" expression="156" type="int" const="true"/>
+	<Var name="icon_height" expression="156" type="int" const="true"/>
+
+	<Var name="animation_visibility" expression="0" const="true"/>
+	<Var name="yesterday_date" expression="#date" type="int" const="true"/>
+	<Var name="yesterday_time" expression="#time_sys" type="long" const="true"/>
+
+	<VirtualScreen name="yester" w="#icon_width" h="#icon_height">
+		<Image w="#icon_width" h="#icon_height" x="#icon_width/2" y="#icon_height/2" align="center" alignV="center" src="day_festival.png"/><!--背景-->
+		<DateTime x="#icon_width/2" y="39" color="#ff0000" size="27" align="center" typeface="ColorFont-Medium.ttf" bold="false" format="EEE" value="#yesterday_time" visibility="1" alpha="255" />
+		<!-- 星期-->
+		<Image w="#icon_width" h="#icon_height" x="#icon_width/2" y="#icon_height/2" align="center" alignV="center" src="line.png"/><!--分割线-->
+		<DateTime x="#icon_width/2" y="85" align="center" bold="true" color="#ff0000" size="27" value="#yesterday_time" format="d" visibility="1" alpha="255" />
+		<!-- 日期-->
+	</VirtualScreen>
+
+	<VirtualScreen name="today" w="#icon_width" h="#icon_height" >
+		<Image w="#icon_width" h="#icon_height" x="#icon_width/2" y="#icon_height/2" align="center" alignV="center" src="day_festival.png"/>
+		<DateTime x="#icon_width/2" y="39" color="#ff0000" size="27" align="center" typeface="ColorFont-Medium.ttf" bold="false" format="EEE" visibility="1" alpha="255" />
+		<Image w="#icon_width" h="#icon_height" x="#icon_width/2" y="#icon_height/2" align="center" alignV="center" src="line.png"/><!--分割线-->
+		<DateTime x="#icon_width/2" y="85" align="center" bold="true" color="#ff0000" size="27" format="d" visibility="1" alpha="255" />
+	</VirtualScreen>
+	<Var name="ani_angle_top">
+		<VariableAnimation>
+			<AniFrame value="0" time="0"/>
+			<AniFrame value="0" time="500"/>
+			<AniFrame value="-90" time="1500"/>
+			<AniFrame value="0" time= "1000000000000"/>
+		</VariableAnimation>
+	</Var>
+
+	<Var name="ani_angle_bottom">
+		<VariableAnimation>
+			<AniFrame value="90" time="0"/>
+			<AniFrame value="90" time="1500"/>
+			<AniFrame value="0" time="2500"/>
+			<AniFrame value="0" time= "1000000000000"/>
+		</VariableAnimation>
+	</Var>
+	<Group name="viturl_group" visibility="#animation_visibility">
+		<Image name="today_top" x="#icon_width/2" y="#icon_height/2" w="#icon_width" h="#icon_height/2" align="center" alignV="bottom" useVirtualScreen="true" srcX="0" srcY="0" srcW="#icon_width" srcH="#icon_height/2" src="today"/>
+		<Image name="yesterday_top" x="#icon_width/2" y="#icon_height/2" w="#icon_width" h="#icon_height/2" align="center" alignV="bottom" useVirtualScreen="true" srcX="0" srcY="0" srcW="#icon_width" srcH="#icon_height/2" src="yester"
+			   pivotX="#icon_width/2" pivotY="#icon_height/2" rotationX="#ani_angle_top"/>
+		<Image name="yesterday_bottom" x="#icon_width/2" y="#icon_height/2" w="#icon_width" h="#icon_height/2" align="center" alignV="top" useVirtualScreen="true" srcX="0" srcY="#icon_height/2" srcW="#icon_width" srcH="#icon_height/2" src="yester"/>
+		<Image name="today_bottom" x="#icon_width/2" y="#icon_height/2" w="#icon_width" h="#icon_height/2" align="center" alignV="top" useVirtualScreen="true" srcX="0" srcY="#icon_height/2" srcW="#icon_width" srcH="#icon_height/2"
+			   pivotX="#icon_width/2" src="today" rotationX="#ani_angle_bottom"/>
+	</Group>
+	<Group name="real_group" visibility="not(#animation_visibility)">
+		<Image w="#icon_width" h="#icon_height" x="#icon_width/2" y="#icon_height/2" align="center" alignV="center" src="day_festival.png"/>
+		<DateTime x="#icon_width/2" y="39" color="#ff0000" size="27" align="center" typeface="FZLanTingHeiPro_04_OPPO.TTF" bold="false" format="EEE" visibility="1" alpha="255"/>
+		<Image w="#icon_width" h="#icon_height" x="#icon_width/2" y="#icon_height/2" align="center" alignV="center" src="line.png"/><!--分割线-->
+		<VirtualScreen name="today_date_ok" w="#icon_width" h="#icon_height" >
+			<DateTime x="#icon_width/2" y="85" align="center" bold="true" color="#ff0000" size="27" format="d" visibility="1" alpha="255" />
+		</VirtualScreen>
+		<Image x="#icon_width/2" y="#icon_height/2" w="#icon_width" h="#icon_height" align="center" alignV="center" useVirtualScreen="true" src="today_date_ok"/>
+	</Group>
+
+	<FramerateController name="framerateController">
+		<ControlPoint time="0" frameRate="60"/>
+		<ControlPoint time="2600" frameRate="0"/>
+	</FramerateController>
+	<Var expression="#year*10000+#month*100+#date" threshold="1">
+		<Trigger>
+			<VariableCommand name="animation_visibility" expression="1" type="int"/>
+			<Command target="framerateController.reset" value="true"/>
+			<Command target="ani_angle_top.animation" value="play"/>
+			<Command target="ani_angle_bottom.animation" value="play"/>
+			<VariableCommand name="yesterday_date" expression="#date" type="int" delay="2500"/>
+			<VariableCommand name="animation_visibility" expression="0" type="int" delay="2500"/>
+			<VariableCommand name="yesterday_time" expression="#time_sys" type="long" delay="2500"/>
+		</Trigger>
+	</Var>
+	<Var name="an_1">
+		<VariableAnimation>
+			<AniFrame value="0" time="0"/>
+			<AniFrame value="1" time="100"/>
+			<AniFrame value="1" time="999999999999"/>
+		</VariableAnimation>
+	</Var>
+</Icon>
